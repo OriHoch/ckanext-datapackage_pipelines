@@ -43,14 +43,24 @@ docker run -v /var/ckan/pipelines:/pipelines:rw \
 
 Pipelines dashboard is available publically at http://your-ckan-url/pipelines
 
-CKAN plugins can use the pipelines server by implementing the `IDatapackagePipelines` interface.
+CKAN plugins can use the pipelines server by implementing the `IDatapackagePipelines` interface which contains the following  methods:
 
-`register_pipelines` method returns the pipelines name (usually the name of the plugin) and directory to get the plugin's
+* `register_pipelines` - returns the pipelines name (usually the name of the plugin) and directory to get the plugin's
 pipelines from. When CKAN is restarted the pipelines are copied by default to /var/ckan/pipelines - this directory should be
 shared between CKAN and the pipelines server. If the plugin pipelines directories contains a `requirements.txt` it will be
 installed on restart of the pipelines server.
+* `get_pipelines_config` - returns a dict of key-value pairs containing the plugin's configuration or other data which should be available to the pipeline processors.
 
-## Configuration
+Pipeline processors can get this configuration using  `datapackage_pipelines_ckanext.helpers.get_plugin_configuration(plugin_name)`.
+
+The following pipelines processor is available:
+
+* `ckanext.dump_to_path` - same as standard library `dump.to_path` but dumps to the CKAN data directory.
+  * parameters:
+  * `plugin`: **required** name of the plugin
+  * `out-path`: relative path within the plugin's data directory
+
+## CKAN Plugin Configuration
 
 Following are the supported configurations and default values
 
