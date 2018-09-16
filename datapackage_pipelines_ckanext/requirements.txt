@@ -1,0 +1,3 @@
+-e git+https://github.com/OriHoch/datapackage-pipelines.git@dataflows-http-headers#egg=datapackage-pipelines
+-e git+https://github.com/OriHoch/dataflows.git@support-load-from-datapackage-resources#egg=dataflows
+-e git+https://github.com/OriHoch/datapackage-pipelines-ckan.git@support-multiple-datasets#egg=datapackage-pipelines-ckan
