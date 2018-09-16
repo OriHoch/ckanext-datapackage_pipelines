@@ -1,6 +1,6 @@
 # ckanext-datapackage_pipelines
 
-![Docker: orihoch/datapackage-pipelines-ckan](https://img.shields.io/badge/Docker-orihoch/datapackage--pipelines--ckanext-darkgreen.svg)
+[![CKAN pipelines server Docker image: orihoch/datapackage-pipelines-ckan](https://img.shields.io/badge/CKAN%20pipelines%20server%20Docker%20image-orihoch/datapackage--pipelines--ckanext-darkgreen.svg)](https://hub.docker.com/r/orihoch/datapackage-pipelines-ckanext/)
 
 Integrate [datapackage-pipelines](https://github.com/frictionlessdata/datapackage-pipelines) with CKAN
 
