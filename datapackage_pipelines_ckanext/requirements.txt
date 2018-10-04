@@ -1,3 +1,3 @@
 https://github.com/OriHoch/dataflows/archive/support-load-from-datapackage-resources.zip
 https://github.com/OriHoch/datapackage-pipelines/archive/dataflows-http-headers.zip
-https://github.com/OriHoch/datapackage-pipelines-ckan/archive/support-multiple-datasets.zip
+https://github.com/OriHoch/datapackage-pipelines-ckan/archive/support-multiple-datasets-headers-translated-error-message.zip
