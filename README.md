@@ -53,12 +53,34 @@ installed on restart of the pipelines server.
 
 Pipeline processors can get this configuration using  `datapackage_pipelines_ckanext.helpers.get_plugin_configuration(plugin_name)`.
 
-The following pipelines processor is available:
+The following pipelines processors are available:
 
 * `ckanext.dump_to_path` - same as standard library `dump.to_path` but dumps to the CKAN data directory.
   * parameters:
   * `plugin`: **required** name of the plugin
   * `out-path`: relative path within the plugin's data directory
+
+* `ckanext.load_resource` - same as standard library `load_resource` but loads from CKAN data directory.
+  * parameters:
+  * `path`: **required** relative path to the datapackage in the plugin's data directory
+  * `plugin`: **required** the plugin's name
+
+To support pipeline dependencies, rename your `pipeline-spec.yaml` to `ckanext.source-spec.yaml`
+
+Following is an example pipeline spec where the `download_data` pipeline will run on a schedule
+and after each scheduled run the `load_data_to_ckan` pipeline will run:
+
+```
+download_data:
+  schedule:
+    crontab: "1 2 * * *"
+  pipeline:
+  - ...
+
+load_data_to_ckan:
+  dependencies:
+  - ckanext-pipeline: your_plugin_name download_data
+```
 
 ## CKAN Plugin Configuration
 
@@ -68,14 +90,3 @@ Following are the supported configurations and default values
 ckanext.datapackage_pipelines.directory = /var/ckan/pipelines
 ckanext.datapackage_pipelines.dashboard_url = http://localhost:5050
 ```
-
-## Updating the package on PYPI
-
-Update the version in `VERSION.txt`, then build and upload:
-
-```
-python setup.py sdist &&\
-twine upload dist/ckanext-datapackage_pipelines-$(cat VERSION.txt).tar.gz
-```
-
-ckanext-datapackage_pipelines should be availabe on PyPI as https://pypi.python.org/pypi/ckanext-datapackage_pipelines.
